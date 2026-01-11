@@ -1,0 +1,59 @@
+﻿<#@ template language="C#" #>
+<#@ include file="..\..\common\PrimitiveObsession.ttinclude" once="true" #>
+<#
+    Config.Namespace = "iSukces.Llm.Common";
+    Config.IncludeFeatures = Features.All;
+    Config.IgnoreFeatures = Features.RelativeOperators
+                            | Features.PrimitiveWrapper
+                            | Features.SystemTextJsonSerializer;
+    // | Features.NewtonsoftJsonSerializer;
+    Config.ImplicitUsings.Add("System");
+    Config.ImplicitUsings.Add("Newtonsoft.Json");
+    Config.AddUsings = ["System.Globalization"];
+
+    var infos = new PrimitiveObsessionBase[]
+    {
+        new StringKey2("ToolResultValue")
+        {
+            ConvertFromPrimitive = TypeConversion.Implicit,
+            IsPartial = true
+        }
+    };
+
+    PrimitiveObsessionBase.WriteAll(infos, this);
+#>
+<#+
+    public class StringKey2 : StringKey
+    {
+        public StringKey2(string name, StringComparison comparison = StringComparison.Ordinal)
+            : base(name, comparison)
+        {
+            ToStringExpression = "Value";
+        }
+
+        protected override void AddFieldsAndProperties()
+        {
+            base.AddFieldsAndProperties();
+
+            ImplicitInvariantCulture("int");
+            ImplicitInvariantCulture("long");
+            ImplicitInvariantCulture("decimal");
+            ImplicitInvariantCulture("double");
+            ImplicitInvariantCulture("float");
+        }
+
+        private void Implicit(string type, string expression)
+        {
+            WriteLine("public static implicit operator ToolResultValue("+type+" value)");
+            WriteLine("    => new ToolResultValue("+expression+");");
+            WriteLine();
+            
+        }
+        private void ImplicitInvariantCulture(string type)
+        {
+            Implicit(type, "value.ToString(CultureInfo.InvariantCulture)");
+        }
+    }
+
+    
+#>

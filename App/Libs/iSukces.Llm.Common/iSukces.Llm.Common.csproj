@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{CA18AD85-4A3E-4540-91F9-994A73581E53}</ProjectGuid>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSource>false</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PackageProjectUrl>https://github.com/isukces/iSukces.Llm</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>https://github.com/isukces/iSukces.Llm</RepositoryUrl>
+    <Description>A core library providing common types, models, and abstractions for working with Large Language Models (LLM). It also enables easy communication with LLMs using the OpenAI standard.</Description>
+    <PackageTags>LLM AI OpenAI</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(SignKey)' != ''">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(SignKey)</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Primitive.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Primitive.tt</DependentUpon>
+    </Compile>
+    <Compile Update="_tools\ToolResultValue.Auto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToolResultValue.tt</DependentUpon>
+    </Compile>
+    <None Update="Primitive.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Primitive.cs</LastGenOutput>
+    </None>
+    <None Update="_tools\ToolResultValue.Auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ToolResultValue.Auto.cs</LastGenOutput>
+    </None>
+    <Using Include="Newtonsoft.Json.Serialization" />
+    <Using Include="Newtonsoft.Json.Linq" />
+    <Using Include="Newtonsoft.Json" />
+    <Using Include="System" />
+  </ItemGroup>
+</Project>

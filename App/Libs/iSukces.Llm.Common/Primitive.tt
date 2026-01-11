@@ -1,0 +1,71 @@
+﻿<#@ template language="C#" #>
+<#@ include file="..\common\PrimitiveObsession.ttinclude" once="true" #>
+<#
+    Config.Namespace = "iSukces.Llm.Common";
+    Config.IncludeFeatures = Features.All;
+    Config.IgnoreFeatures = Features.RelativeOperators
+                            | Features.PrimitiveWrapper
+                            | Features.SystemTextJsonSerializer;
+    // | Features.NewtonsoftJsonSerializer;
+    Config.ImplicitUsings.Add("System");
+
+    var infos = new PrimitiveObsessionBase[]
+    {
+        new StringKey2("LlmToolParameterType")
+        {
+            StaticValues = [
+                new KeyValue("Object", "object"),
+                new KeyValue("String", "string"),
+                new KeyValue("Number", "number")
+                ],
+            ConvertFromPrimitive = TypeConversion.Implicit
+        },
+        new StringKey2("AiFinishReason")
+        {
+            StaticValues = [
+                new KeyValue("Stop", "stop"),
+                new KeyValue("Length", "length"),
+                new KeyValue("ContentFilter", "content_filter"),
+                new KeyValue("ToolsCall", "tool_calls"),
+                new KeyValue("Null", "null")
+                ]
+        },
+        new StringKey2("ToolChoice")
+        {
+            StaticValues = [
+                new KeyValue("Auto", "auto")
+                ]
+        }
+    };
+
+    PrimitiveObsessionBase.WriteAll(infos, this);
+#>
+<#+
+    public class StringKey2 : StringKey
+    {
+        public StringKey2(string name, StringComparison comparison = StringComparison.Ordinal)
+            : base(name, comparison)
+        {
+            ToStringExpression = "Value";
+        }
+
+        protected override void AddFieldsAndProperties()
+        {
+            base.AddFieldsAndProperties();
+
+            if (StaticValues is not null)
+                foreach (var k in StaticValues)
+                    WriteLine(k.ToString(Name));
+        }
+
+        public List<KeyValue>? StaticValues { get; set; }
+    }
+
+    public class KeyValue(string key, string value)
+    {
+        public string ToString(string className)
+        {
+            return "public static readonly " + className + " " + key + " = new(\"" + value + "\");";
+        }
+    }
+#>

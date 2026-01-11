@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{4ED229F2-D65C-420A-BF15-B8E5455A905C}</ProjectGuid>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSource>false</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PackageProjectUrl>https://github.com/isukces/iSukces.Llm</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>https://github.com/isukces/iSukces.Llm</RepositoryUrl>
+    <Description>An extension for the iSukces.Llm framework providing dedicated models and protocol support for the Bielik LLM (by SpeakLeash).</Description>
+    <PackageTags>LLM AI OpenAI Bielik SpeakLeash</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(SignKey)' != ''">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(SignKey)</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iSukces.Llm.Common\iSukces.Llm.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Model\Primitive.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Primitive.tt</DependentUpon>
+    </Compile>
+    <None Update="Model\Primitive.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Primitive.cs</LastGenOutput>
+    </None>
+    <None Remove="*.DotSettings" />
+    <Using Include="Newtonsoft.Json.Serialization" />
+    <Using Include="Newtonsoft.Json.Linq" />
+    <Using Include="Newtonsoft.Json" />
+  </ItemGroup>
+</Project>
