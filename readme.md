@@ -1,5 +1,8 @@
 # iSukces.Llm
 
+[![NuGet iSukces.Llm.Common](https://img.shields.io/nuget/v/iSukces.Llm.Common?label=iSukces.Llm.Common)](https://www.nuget.org/packages/iSukces.Llm.Common)
+[![NuGet iSukces.Llm.Bielik](https://img.shields.io/nuget/v/iSukces.Llm.Bielik?label=iSukces.Llm.Bielik)](https://www.nuget.org/packages/iSukces.Llm.Bielik)
+
 Projekt powstał, aby ułatwić korzystanie z LLM w ekosystemie .NET bez dorzucania do projektow ciężkich zależności.
 Celem były lekkie modele danych, prosty klient HTTP i gotowa integracja z Bielikiem.
 
