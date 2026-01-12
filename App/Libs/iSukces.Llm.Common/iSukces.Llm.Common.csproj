@@ -16,6 +16,10 @@
     <RepositoryUrl>https://github.com/isukces/iSukces.Llm</RepositoryUrl>
     <Description>A core library providing common types, models, and abstractions for working with Large Language Models (LLM). It also enables easy communication with LLMs using the OpenAI standard.</Description>
     <PackageTags>LLM AI OpenAI</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.26.112.1</AssemblyVersion>
+    <Version>1.26.112.1</Version>
+    <FileVersion>1.26.112.1</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(SignKey)' != ''">
     <SignAssembly>true</SignAssembly>
