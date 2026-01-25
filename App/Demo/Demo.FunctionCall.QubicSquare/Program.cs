@@ -23,8 +23,8 @@ internal static class Program
             [
                 ChatMessage.System(DemoConfig.Sys),
                 ChatMessage.User("Oblicz pierwiastek sześcienny z 987654321")
-            ],
-            ToolChoice = ToolChoice.Auto
+            ]
+            // ToolChoice = ToolChoice.Auto - teraz to jest domyślne
         };
         request.Tools.Add(DemoTools.CubeRoot());
 

@@ -2,7 +2,7 @@
 using iSukces.Llm.Bielik;
 using iSukces.Llm.Common;
 
-namespace Demo.FunctionCall.Date;
+namespace Demo.HelloWorld;
 
 internal static class Program
 {
@@ -20,21 +20,17 @@ internal static class Program
         var request = new ChatRequest
         {
             Model = model,
-            Temperature = 0.1,
             Messages =
             [
-                ChatMessage.System(DemoConfig.Sys),
-                ChatMessage.User("Jaki dzień był przedwczoraj?")
+                ChatMessage.System("Jesteś ekspertem od literatury języka polskiego."),
+                ChatMessage.User("Napisz kilka zdań o Mickiewiczu")
             ]
-            // ToolChoice = ToolChoice.Auto - teraz to jest domyślne
         };
-        
-        request.Tools.Add(DemoTools.GetDate());
         
         Console.WriteLine("User:");
         Console.WriteLine(request.Messages[^1].Content);
         
-        var obj = await client.CallCompletions(request);
+        var obj    = await client.CallCompletions(request);
         var choice = obj.Choices[0];
 
         if (choice.FinishReason == AiFinishReason.Stop)
@@ -43,17 +39,6 @@ internal static class Program
             return;
         }
 
-        if (choice.FinishReason == AiFinishReason.ToolsCall)
-        {
-            // to trzeba wyczyścić bo wpada w nieskończoną pętlę pytania o datę
-            choice.Message.Content = "";
-            request.AppendMessage(choice.Message);
-            request.EvaluateToolsCalls(choice.Message);
-            obj = await client.CallCompletions(request);
-            choice = obj.Choices[0];
-        }
-
-        Console.WriteLine("Agent:");
-        Console.WriteLine(choice.Message.Content); 
+        Console.WriteLine("choice.FinishReason=" + choice.FinishReason);
     }
 }

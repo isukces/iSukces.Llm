@@ -3,9 +3,15 @@
   <PropertyGroup>
     <ProjectGuid>{4ED229F2-D65C-420A-BF15-B8E5455A905C}</ProjectGuid>
     <TargetFramework>net10.0</TargetFramework>
+    <AssemblyVersion>1.26.112.1</AssemblyVersion>
+    <FileVersion>1.26.112.1</FileVersion>
+    <Version>1.26.112.1</Version>
     <LangVersion>14</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Description>An extension for the iSukces.Llm framework providing dedicated models and protocol support for the Bielik LLM (by SpeakLeash).</Description>
+    <PackageTags>LLM AI OpenAI Bielik SpeakLeash</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -15,12 +21,6 @@
     <PackageProjectUrl>https://github.com/isukces/iSukces.Llm</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <RepositoryUrl>https://github.com/isukces/iSukces.Llm</RepositoryUrl>
-    <Description>An extension for the iSukces.Llm framework providing dedicated models and protocol support for the Bielik LLM (by SpeakLeash).</Description>
-    <PackageTags>LLM AI OpenAI Bielik SpeakLeash</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.26.112.1</AssemblyVersion>
-    <Version>1.26.112.1</Version>
-    <FileVersion>1.26.112.1</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(SignKey)' != ''">
     <SignAssembly>true</SignAssembly>

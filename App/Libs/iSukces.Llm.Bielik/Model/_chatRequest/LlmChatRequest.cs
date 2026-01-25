@@ -8,17 +8,48 @@ internal sealed class BielikLlmChatRequest
     {
         return new BielikLlmChatRequest
         {
-            Messages   = BielikModelConverter.ConvertCommon(chatRequest.Messages, BielikChatMessage.From),
-            Tools      = BielikModelConverter.ConvertTools(chatRequest.Tools.Tools),
-            ToolChoice = chatRequest.ToolChoice,
-            Model      = chatRequest.Model
+            Messages    = BielikModelConverter.ConvertCommon(chatRequest.Messages, BielikChatMessage.From),
+            Tools       = BielikModelConverter.ConvertTools(chatRequest.Tools.Tools),
+            ToolChoice  = chatRequest.ToolChoice,
+            Model       = chatRequest.Model,
+            Temperature = chatRequest.Temperature,
         };
     }
 
-    public required string                  Model      { get; set; }
-    public          BielikChatMessage[]     Messages   { get; set; } = [];
-    public          BielikToolDefinition[]? Tools      { get; set; }
-    public          ToolChoice              ToolChoice { get; set; }
+    public bool ShouldSerializeTemperature()
+    {
+        return Temperature.HasValue;
+    }
+
+    public bool ShouldSerializeToolChoice()
+    {
+        return ToolChoice != ToolChoice.Empty &&
+               ShouldSerializeTools();
+    }
+
+
+    public bool ShouldSerializeTools()
+    {
+        return Tools != null && Tools.Length > 0;
+    }
+
+    public double? Temperature { get; set; }
+
+    public required string                  Model    { get; set; }
+    public          BielikChatMessage[]     Messages { get; set; } = [];
+    public          BielikToolDefinition[]? Tools    { get; set; }
+
+    public ToolChoice ToolChoice
+    {
+        get
+        {
+            if (ShouldSerializeTools())
+                if (field == ToolChoice.Empty)
+                    return ToolChoice.Auto;
+            return field;
+        }
+        set;
+    }
 }
 
 internal sealed class BielikChatMessage : ChatMessage

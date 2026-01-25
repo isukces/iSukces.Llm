@@ -31,6 +31,7 @@ public class ChatRequest
     public required string        Model    { get; set; }
     public required ChatMessage[] Messages { get; set; }
 
-    public ToolsCollection Tools      { get; set; } = new();
-    public ToolChoice      ToolChoice { get; set; }
+    public ToolsCollection Tools       { get; set; } = new();
+    public ToolChoice      ToolChoice  { get; set; }
+    public double?         Temperature { get; set; }
 }
