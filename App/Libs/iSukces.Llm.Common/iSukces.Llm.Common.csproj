@@ -3,9 +3,9 @@
   <PropertyGroup>
     <ProjectGuid>{CA18AD85-4A3E-4540-91F9-994A73581E53}</ProjectGuid>
     <TargetFramework>net10.0</TargetFramework>
-    <AssemblyVersion>1.26.112.1</AssemblyVersion>
-    <FileVersion>1.26.112.1</FileVersion>
-    <Version>1.26.112.1</Version>
+    <AssemblyVersion>1.26.125.2</AssemblyVersion>
+    <FileVersion>1.26.125.2</FileVersion>
+    <Version>1.26.125.2</Version>
     <LangVersion>14</LangVersion>
     <Nullable>enable</Nullable>
     <Description>A core library providing common types, models, and abstractions for working with Large Language Models (LLM). It also enables easy communication with LLMs using the OpenAI standard.</Description>

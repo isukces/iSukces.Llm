@@ -3,9 +3,9 @@
   <PropertyGroup>
     <ProjectGuid>{4ED229F2-D65C-420A-BF15-B8E5455A905C}</ProjectGuid>
     <TargetFramework>net10.0</TargetFramework>
-    <AssemblyVersion>1.26.112.1</AssemblyVersion>
-    <FileVersion>1.26.112.1</FileVersion>
-    <Version>1.26.112.1</Version>
+    <AssemblyVersion>1.26.125.2</AssemblyVersion>
+    <FileVersion>1.26.125.2</FileVersion>
+    <Version>1.26.125.2</Version>
     <LangVersion>14</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
