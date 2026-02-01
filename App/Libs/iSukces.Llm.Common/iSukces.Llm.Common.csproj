@@ -37,7 +37,7 @@
     <Compile Update="_tools\ToolResultValue.Auto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ToolResultValue.tt</DependentUpon>
+      <DependentUpon>ToolResultValue.Auto.tt</DependentUpon>
     </Compile>
     <None Update="Primitive.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

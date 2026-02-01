@@ -1,0 +1,1 @@
+W tym katalogu umieść pliki .md, które mają zasilić bazę wektorową

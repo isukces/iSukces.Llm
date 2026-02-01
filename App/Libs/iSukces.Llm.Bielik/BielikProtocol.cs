@@ -29,12 +29,12 @@ public sealed class BielikProtocol : ILlmProtocol
         return LlmJsonUtils.Deserialize<JToken>(src);
     }
 
-    public LlmChatResponse DeserializeChatResponse(string json)
+    public TOut DeserializeChatResponse(string json)
     {
         var b = JsonConvert.DeserializeObject<BielikLlmChatResponse>(json, LlmJsonUtils.DefaultSettings);
         if (b is null)
             throw new ArgumentNullException(nameof(b));
-        return new LlmChatResponse
+        return new TOut
         {
             Created = b.Created,
             Id      = b.Id,

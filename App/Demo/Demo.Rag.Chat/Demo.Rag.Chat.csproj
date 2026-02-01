@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Demo.Rag</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Libs\iSukces.Llm.Bielik\iSukces.Llm.Bielik.csproj" />
+      <ProjectReference Include="..\Demo.Common\Demo.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Weaviate.Client" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>

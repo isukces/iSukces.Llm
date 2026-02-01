@@ -1,6 +1,6 @@
 ﻿namespace iSukces.Llm.Common;
 
-public sealed class LlmChatResponse
+public sealed class TOut
 {
     public string                  Id      { get; set; } = "";
     public string                  Object  { get; set; } = "";

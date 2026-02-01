@@ -5,3 +5,5 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 *.DotSettings.user
+App/Demo/Demo.Rag.Seed/source-files/*.md
+App/Demo/*.json

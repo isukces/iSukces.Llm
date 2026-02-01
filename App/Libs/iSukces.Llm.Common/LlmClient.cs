@@ -18,11 +18,10 @@ public class LlmClient
         };
     }
 
-    public async Task<LlmChatResponse> CallCompletions(ChatRequest chatRequest)
+    public async Task<TOut> CallCompletions(ChatRequest chatRequest)
     {
         var requestJson = _protocol.Serialize(chatRequest, true);
-        var content     = new StringContent(requestJson, Encoding.UTF8, "application/json");
-        var response    = await _httpClient.PostAsync(_callPrefix + "/chat/completions", content);
+        var response    = await _httpClient.PostJson(_callPrefix + "/chat/completions", requestJson);
         response.EnsureSuccessStatusCode();
         var responseJson = await response.Content.ReadAsStringAsync();
         return _protocol.DeserializeChatResponse(responseJson);

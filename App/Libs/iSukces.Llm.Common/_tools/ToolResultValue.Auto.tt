@@ -1,5 +1,5 @@
 ﻿<#@ template language="C#" #>
-<#@ include file="..\..\common\PrimitiveObsession.ttinclude" once="true" #>
+<#@ include file="..\..\..\common\PrimitiveObsession.ttinclude" once="true" #>
 <#
     Config.Namespace = "iSukces.Llm.Common";
     Config.IncludeFeatures = Features.All;

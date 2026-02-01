@@ -50,9 +50,6 @@ public readonly partial struct ToolResultValue: IComparable, IComparable<string>
 
     public static StringComparer Comparer => StringComparer.Ordinal;
 
-    public static implicit operator ToolResultValue(double value)
-        => new ToolResultValue(value.ToString(CultureInfo.InvariantCulture));
-
     public static implicit operator ToolResultValue(int value)
         => new ToolResultValue(value.ToString(CultureInfo.InvariantCulture));
 
@@ -60,6 +57,12 @@ public readonly partial struct ToolResultValue: IComparable, IComparable<string>
         => new ToolResultValue(value.ToString(CultureInfo.InvariantCulture));
 
     public static implicit operator ToolResultValue(decimal value)
+        => new ToolResultValue(value.ToString(CultureInfo.InvariantCulture));
+
+    public static implicit operator ToolResultValue(double value)
+        => new ToolResultValue(value.ToString(CultureInfo.InvariantCulture));
+
+    public static implicit operator ToolResultValue(float value)
         => new ToolResultValue(value.ToString(CultureInfo.InvariantCulture));
 
 }
