@@ -1,7 +1,4 @@
-﻿//using Newtonsoft.Json;
-//using Newtonsoft.Json.Serialization;
-
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json.Converters;
 
 namespace iSukces.Llm.Common;
 
@@ -30,16 +27,9 @@ public static class LlmJsonUtils
         return JsonConvert.DeserializeObject<T>(json, DefaultSettings);
     }
 
-    public static string Serialize<T>(T message, Formatting formatting = Formatting.None)
-    {
-        //var    settings = CreateSettings(formatting);
-        var settings = formatting == Formatting.None
-            ? DefaultSettings
-            : IndentedSettings;
-        var json = JsonConvert.SerializeObject(message, settings);
-        return json;
-    }
+    public static JsonSerializerSettings DefaultSettings
+        => CreateSettings();
 
-    public static readonly JsonSerializerSettings DefaultSettings = CreateSettings();
-    public static readonly JsonSerializerSettings IndentedSettings = CreateSettings(Formatting.Indented);
+    public static JsonSerializerSettings IndentedSettings
+        => CreateSettings(Formatting.Indented);
 }

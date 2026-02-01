@@ -1,20 +1,57 @@
-﻿using iSukces.Llm.Common;
+﻿using System.Runtime.InteropServices.JavaScript;
+using iSukces.Llm.Common;
 
 namespace iSukces.Llm.Bielik.Model;
 
 internal sealed class BielikLlmChatRequest
 {
-    public static BielikLlmChatRequest From(ChatRequest chatRequest)
+    public static BielikLlmChatRequest From(ChatRequest chatRequest, ServerType serverType)
     {
-        return new BielikLlmChatRequest
+        var a=  new BielikLlmChatRequest
         {
             Messages    = BielikModelConverter.ConvertCommon(chatRequest.Messages, BielikChatMessage.From),
             Tools       = BielikModelConverter.ConvertTools(chatRequest.Tools.Tools),
             ToolChoice  = chatRequest.ToolChoice,
             Model       = chatRequest.Model,
-            Temperature = chatRequest.Temperature,
+            Temperature = chatRequest.Temperature
         };
+
+        if (serverType == ServerType.LmStudio)
+        {
+            a.ResponseFormat = ConvertExtraBody(chatRequest.ExtraBody);
+        }
+        
+        return a;
     }
+
+    private static object? ConvertExtraBody(IExtraBody? src)
+    {
+        switch (src)
+        {
+            case null: 
+                return null;
+            case ExtraBodyGuidedJson a:
+            {
+                // see https://lmstudio.ai/docs/developer/openai-compat/structured-output?utm_source=chatgpt.com
+                var schema = new JObject
+                {
+                    ["name"]        = "my_schema",
+                    ["strict"] = true,
+                    ["schema"] = a.Schema.JObject
+                };
+                var j = new JObject
+                {
+                    ["type"]        = "json_schema",
+                    ["json_schema"] = schema
+                };
+                return j;
+            }
+            default:
+                throw new NotImplementedException();
+        }
+    }
+   
+
 
     public bool ShouldSerializeTemperature()
     {
@@ -33,11 +70,20 @@ internal sealed class BielikLlmChatRequest
         return Tools != null && Tools.Length > 0;
     }
 
-    public double? Temperature { get; set; }
 
-    public required string                  Model    { get; set; }
-    public          BielikChatMessage[]     Messages { get; set; } = [];
-    public          BielikToolDefinition[]? Tools    { get; set; }
+    public required string                  Model       { get; set; }
+    public          BielikChatMessage[]     Messages    { get; set; } = [];
+    public          BielikToolDefinition[]? Tools       { get; set; }
+    
+    //public          IExtraBody?             GuidedJson   { get; set; }
+    
+    
+    /// <summary>
+    /// For LM Studio
+    /// </summary>
+    public object? ResponseFormat { get; set; }
+    
+    public          double?                 Temperature { get; set; }
 
     public ToolChoice ToolChoice
     {

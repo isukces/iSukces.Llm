@@ -8,7 +8,6 @@ internal static class Program
 {
     public static async Task Main(string[] args)
     {
-        Console.WriteLine("Inspirowane filmem https://www.youtube.com/watch?v=wONdGWr8684");
         var protocol = new BielikProtocol();
         var client   = new LlmClient(DemoConfig.ApiUrl, protocol);
         

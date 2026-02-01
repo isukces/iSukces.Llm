@@ -8,6 +8,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Libs\iSukces.Llm.Bielik\iSukces.Llm.Bielik.csproj" />
     <ProjectReference Include="..\..\Libs\iSukces.Llm.Common\iSukces.Llm.Common.csproj" />
   </ItemGroup>
 </Project>

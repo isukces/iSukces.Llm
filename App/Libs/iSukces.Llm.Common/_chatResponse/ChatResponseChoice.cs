@@ -1,3 +1,4 @@
+
 namespace iSukces.Llm.Common;
 
 public class ChatResponseChoice

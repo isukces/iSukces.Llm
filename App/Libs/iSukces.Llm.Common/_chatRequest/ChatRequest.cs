@@ -34,4 +34,6 @@ public class ChatRequest
     public ToolsCollection Tools       { get; set; } = new();
     public ToolChoice      ToolChoice  { get; set; }
     public double?         Temperature { get; set; }
+    
+    public IExtraBody? ExtraBody { get; set; }
 }

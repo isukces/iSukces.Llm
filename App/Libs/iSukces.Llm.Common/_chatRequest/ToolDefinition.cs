@@ -9,9 +9,9 @@ public abstract class ToolDefinition
 
 public sealed class ToolDefinitionFunction : ToolDefinition
 {
-    public required string                      Name        { get; set; }
-    public required string                      Description { get; set; }
-    public          LlmToolParameters?          Parameters  { get; set; }
+    public required string                               Name        { get; set; }
+    public required string                               Description { get; set; }
+    public          LlmToolParameters?                   Parameters  { get; set; }
     public          Func<ToolArguments, ToolResultValue> Invoke      { get; set; }
 }
 
