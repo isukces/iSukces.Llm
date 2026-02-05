@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace iSukces.Llm.Common;
@@ -14,7 +13,8 @@ public class LlmClient
         _protocol   = protocol;
         _httpClient = new HttpClient
         {
-            BaseAddress = new Uri(baseAddress)
+            BaseAddress = new Uri(baseAddress),
+            Timeout = TimeSpan.FromSeconds(200)
         };
     }
 
